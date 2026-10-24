@@ -1,0 +1,36 @@
+# Data, generated artefacts and outputs (re-create with the scripts; never commit).
+# Anchored to the repo root so src/airsat/models/ is not caught.
+/data/
+/artifacts/
+/reports/
+/models/
+/oof/
+/submissions/
+*.zip
+*.parquet
+*.pkl
+*.joblib
+*.npz
+*.npy
+
+# Course materials, slides and local-only files (not part of the code repo)
+/slides/
+/assets/
+/*.pdf
+/*.xlsx
+/Xiangqi_Proposal_Plan.md
+
+# Python
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+.venv/
+
+# Secrets
+.kaggle/
+kaggle.json
+access_token
+.env
