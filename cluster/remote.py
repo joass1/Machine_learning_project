@@ -22,7 +22,8 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = os.environ.get("AIRSAT_CLUSTER", "")  # "<group account>@<cluster address>", from the SCIS email
 KEY = Path(os.environ.get("AIRSAT_SSH_KEY", Path.home() / ".ssh" / "id_ed25519"))
 REMOTE = "airsat"                      # relative to the cluster home directory
-CODE_PATHS = ["src", "experiments", "tests", "cluster", "pyproject.toml", "README.md"]
+CODE_PATHS = ["src", "experiments", "tests", "cluster", "pyproject.toml", "README.md",
+              "assets/fonts"]  # figure font (local-only, skipped when absent)
 DATA_PATHS = ["data/raw/train.csv", "data/raw/test.csv", "data/original_official/data.csv"]
 RESULT_PATHS = ["artifacts/oof", "artifacts/folds", "reports/results", "reports/figures"]
 SLURM_DEFAULTS = {"partition": "project", "account": "is460", "qos": "is460qos"}
@@ -45,7 +46,7 @@ def _upload_tar(paths: list[str], label: str) -> None:
     with tempfile.TemporaryDirectory() as tmp:
         archive = Path(tmp) / f"{label}.tar.gz"
         with tarfile.open(archive, "w:gz") as tar:
-            for rel in paths:
+            for rel in [p for p in paths if (ROOT / p).exists()]:
                 tar.add(ROOT / rel, arcname=rel,
                         filter=lambda info: None if "__pycache__" in info.name else info)
         scp(str(archive), f"{TARGET}:{REMOTE}/{label}.tar.gz")
