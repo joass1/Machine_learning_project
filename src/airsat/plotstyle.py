@@ -34,11 +34,20 @@ def figsize(slide_px_width: int, aspect: float) -> tuple[float, float]:
     return width_in, width_in / aspect
 
 
+FONT_PREFERENCE = ("Open Sans", "Segoe UI", "DejaVu Sans")
+
+
+def font_families() -> list[str]:
+    """Preferred families that are installed (listing a missing one floods the log with warnings)."""
+    installed = {f.name for f in font_manager.fontManager.ttflist}
+    return [f for f in FONT_PREFERENCE if f in installed] or ["DejaVu Sans"]
+
+
 def apply() -> None:
     """Apply the house style globally."""
     mpl.rcParams.update({
         "figure.facecolor": SURFACE, "axes.facecolor": SURFACE, "savefig.facecolor": SURFACE,
-        "font.family": ["Open Sans", "Segoe UI", "DejaVu Sans"], "font.size": BASE_PT,
+        "font.family": font_families(), "font.size": BASE_PT,
         "text.color": INK, "axes.labelcolor": INK_2, "xtick.color": INK_2, "ytick.color": INK_2,
         "xtick.labelsize": BASE_PT, "ytick.labelsize": BASE_PT, "axes.labelsize": BASE_PT,
         "axes.edgecolor": AXIS, "axes.linewidth": 0.8, "axes.grid": True, "grid.color": GRID,

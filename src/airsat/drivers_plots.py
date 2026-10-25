@@ -19,6 +19,7 @@ DATASET_COLORS = {"synthetic": ps.SERIES[0], "real": ps.SERIES[1]}
 DATASET_TITLES = {"synthetic": "Synthetic-trained model", "real": "Real-trained model"}
 CLASSES = ("Business", "Eco Plus", "Eco")
 PURPOSES = {"Business travel": "business trip", "Personal Travel": "personal trip"}
+CABIN_SHORT = {"Eco Plus": "Eco+"}  # heatmap columns are too narrow for "Business" next to "Eco Plus"
 SEGMENT_ORDER = [f"{c}{SEGMENT_SEP}{p}" for p in PURPOSES for c in CLASSES]
 PALE = 0.35
 WIDE_SLOT_PX, WHATIF_SLOT_PX = 1600, 1700
@@ -74,7 +75,7 @@ def fig_permutation(overlap: pd.DataFrame, path: Path) -> None:
 def _segment_axis(ax: plt.Axes, segments: list[str]) -> None:
     """Cabin class as tick labels; trip purpose once under each block, blocks split by a gap."""
     cabins = [s.split(SEGMENT_SEP) for s in segments]
-    ax.set_xticks(range(len(segments)), [c for c, _ in cabins], fontsize=11)
+    ax.set_xticks(range(len(segments)), [CABIN_SHORT.get(c, c) for c, _ in cabins], fontsize=11)
     for purpose, label in PURPOSES.items():
         cols = [i for i, (_, p) in enumerate(cabins) if p == purpose]
         if cols:
@@ -132,7 +133,6 @@ def fig_agreement(agreement: pd.DataFrame, path: Path) -> None:
     ax.set_yticks(y, [segment_display(s, " · ") for s in segments])
     ax.set_xlim(min(-0.1, agreement["spearman"].min() - 0.1), 1.05)
     ax.set_xlabel("Spearman ρ, synthetic vs real ranking of 13 services")
-    ax.legend(loc="upper center", bbox_to_anchor=(0.62, 1.32), ncol=1, fontsize=11)
     own = agreement[agreement["comparison"] == "shap_own_data"].set_index("segment").reindex(segments)
     for yi, (_, row) in zip(y, own.iterrows()):
         table.text(0.0, yi, _fix_first_text(row, "syn"), va="center", color=ps.INK)
@@ -145,6 +145,8 @@ def fig_agreement(agreement: pd.DataFrame, path: Path) -> None:
     _plain(table)
     table.tick_params(labelleft=False, labelbottom=False)
     fig.tight_layout()
+    handles, labels = ax.get_legend_handles_labels()  # below the axes: above them it covers the top row
+    fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(0.5, 0.0), ncol=3, fontsize=11)
     ps.save(fig, path)
 
 
