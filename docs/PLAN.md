@@ -80,11 +80,11 @@ artifacts/, data/, reports/   generated or downloaded: git-ignored
 | WP | Owner | Scope | Deliverables | Status |
 |---|---|---|---|---|
 | WP0 | Joash + Claude | Infrastructure: package, data loaders, folds, encoders, CV runner, prediction store, metrics, tests, cluster tooling | `src/airsat/*`, `tests/*`, `pyproject.toml`, `cluster/*` | ☑ |
-| WP1 | Stream A + B | RQ1 model ladder in 3 settings: LogReg, MLP (sklearn), LightGBM, XGBoost (GPU), CatBoost all-categorical, +bins, +exact-value encoding, RealMLP, TabM, TabPFN (subsampled context, optional) | `src/airsat/models/*`, `experiments/rq1_ladder.py`, `experiments/rq1_report.py` | ☑ code · ☐ full runs (cluster) |
-| WP2 | All six | RQ2 fidelity analyses | `src/airsat/fidelity*.py`, `experiments/rq2_fidelity.py`, tables + figures | ☑ code · ☐ full run (cluster) |
-| WP3 | All six | RQ3 drivers by segment, synthetic vs real | `src/airsat/drivers*.py`, `experiments/rq3_drivers.py`, tables + figures | ☑ code · ☐ full run (cluster) |
-| WP4 | Stream B | Stacking vs hill climbing vs averaging, nested CV, in each setting | `src/airsat/stacking.py`, `experiments/rq1_stacking.py` | ☑ code · ☐ full run (cluster) |
-| WP5 | All six | Write-up: METHODOLOGY.md, RESULTS.md, README, final figures | `docs/METHODOLOGY.md` ☑, `docs/RESULTS.md` ☐ |
+| WP1 | Stream A + B | RQ1 model ladder in 3 settings: LogReg, MLP (sklearn), LightGBM, XGBoost (GPU), CatBoost all-categorical, +bins, +exact-value encoding, RealMLP, TabM, TabPFN (subsampled context, optional) | `src/airsat/models/*`, `experiments/rq1_ladder.py`, `experiments/rq1_report.py` | ☑ |
+| WP2 | All six | RQ2 fidelity analyses | `src/airsat/fidelity*.py`, `experiments/rq2_fidelity.py`, tables + figures | ☑ |
+| WP3 | All six | RQ3 drivers by segment, synthetic vs real | `src/airsat/drivers*.py`, `experiments/rq3_drivers.py`, tables + figures | ☑ |
+| WP4 | Stream B | Stacking vs hill climbing vs averaging, nested CV, in each setting | `src/airsat/stacking.py`, `experiments/rq1_stacking.py` | ☑ |
+| WP5 | All six | Write-up: METHODOLOGY.md, RESULTS.md, README, final figures | `docs/METHODOLOGY.md`, `docs/RESULTS.md`, `docs/figures/` | ☑ |
 
 ### WP1 model ladder (each row × 3 settings)
 
@@ -167,7 +167,21 @@ Never commit `data/`, `artifacts/`, `reports/`, `slides/`, course PDFs/spreadshe
 | 2026-10-25 | Treat S→R as optimistic: the real survey trained the generator | Only 17/699,635 exact copies, but same distribution (METHODOLOGY §2) |
 | 2026-10-25 | TabPFN v2 weights with a 10k stratified context | v2.5+ weights are licence-gated; 10k context fits a 24 GB GPU |
 
-## 9. Prior results (from the proposal, 7 Oct 2026)
+## 9. Headline results (full runs, 25 Oct 2026) — details in `docs/RESULTS.md`
+
+- Best model on real passengers: TabM (R→R 0.9954, S→R 0.9941); best on synthetic CV: CatBoost
+  all-categorical (S→S 0.9603). Synthetic CV ranks models poorly vs real (Kendall τ 0.42).
+- The S6E10 forum tricks (fine bins, exact-value encoding, all-categorical CatBoost) gain on S→S but
+  not on real passengers; RealMLP/TabM do the opposite.
+- 699,635 synthetic rows ≈ 21,700 real rows; ~4 % of synthetic labels are confidently wrong (25× real).
+- Delays collapsed (91 % zero vs 56 %); adversarial AUC 0.832.
+- Fix-first by SHAP: online boarding (synthetic) vs Wi-Fi (real) in all 6 segments; what-if agrees 6/6.
+
+### Next steps for the group
+- Final report and slides from `docs/RESULTS.md` and `docs/figures/` (cite [40]–[45] in `docs/references.md`).
+- Optional robustness: repeat the ladder with 3 seeds; TabPFN with a larger context on a 48 GB GPU.
+
+## 10. Prior results (from the proposal, 7 Oct 2026)
 
 | Experiment | Result |
 |---|---|
