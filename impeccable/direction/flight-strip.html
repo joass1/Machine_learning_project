@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Flight Strip Rack</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Overpass+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--board:#23282d;--rail:#14171a;--strip:#f2d9a0;--strip2:#e9a6b4;--ink:#16181a;--clear:#e8590c}
+*{box-sizing:border-box;margin:0}body{width:1280px;height:720px;background:var(--board);font-family:'Overpass Mono',monospace;color:var(--ink);position:relative;overflow:hidden}
+.rail{position:absolute;left:0;right:0;height:26px;background:var(--rail)}
+.strip{position:absolute;left:70px;right:70px;background:var(--strip);border:2px solid #0006;display:grid;box-shadow:0 6px 14px #0008}
+.big{top:120px;height:300px;grid-template-columns:150px 1fr 220px}
+.big .c{border-right:2px solid #0004;padding:14px;font-size:12px;text-transform:uppercase}
+.big h1{font:800 120px/.92 'Barlow Condensed';text-transform:uppercase;padding:14px 24px;display:flex;align-items:center;letter-spacing:-.005em}
+.stamp{background:var(--clear);color:#fff;font:800 34px/1 'Barlow Condensed';padding:14px;transform:rotate(-3deg);align-self:center;margin:0 14px;text-align:center}
+.small{height:70px;grid-template-columns:150px 1fr 220px;font-size:13px;align-items:center;background:var(--strip2)}
+.small span{padding:0 14px}
+.hero{position:absolute;right:70px;top:462px;width:300px;height:180px;background:#4a5258;border:2px solid #0006}
+.hero i{position:absolute;left:8px;bottom:6px;font:10px 'Overpass Mono';color:#fff}
+.foot{position:absolute;left:70px;bottom:20px;font-size:10px;color:#cfd3d6}
+</style></head><body><div class="rail" style="top:60px"></div><div class="rail" style="top:440px;display:none"></div>
+<div class="strip big"><div class="c">CS GP03<br>IS460<br>SMU</div><h1>Cleared for Satisfaction</h1><div class="stamp">CLEARED<br>SYN→REAL?</div></div>
+<div class="strip small" style="top:450px;left:70px;right:400px"><span>RQ1 TRANSFER</span><span>Which tricks help real passengers?</span><span>FL 100</span></div>
+<div class="strip small" style="top:530px;left:70px;right:400px;background:var(--strip)"><span>RQ2 FIDELITY</span><span>What did the generator distort?</span><span>FL 200</span></div>
+<div class="strip small" style="top:610px;left:70px;right:400px"><span>RQ3 DRIVERS</span><span>What do we fix first, for whom?</span><span>FL 300</span></div>
+<div class="hero"><i>HERO SLOT 5:3 · HIGGSFIELD · GRAIN</i></div>
+</body></html>

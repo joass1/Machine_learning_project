@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Split Flap</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Chivo+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--frame:#8b8f93;--flap:#0e0f10;--paint:#f2f2ee;--amber:#ffb000}
+*{box-sizing:border-box;margin:0}body{width:1280px;height:720px;background:var(--frame);position:relative;overflow:hidden;font-family:'Roboto Condensed'}
+.board{position:absolute;left:36px;right:36px;top:36px;bottom:36px;background:#17181a;padding:28px}
+.row{display:flex;gap:6px;margin-bottom:10px}
+.c{width:62px;height:116px;background:var(--flap);color:var(--paint);font:700 100px/116px 'Roboto Condensed';text-align:center;position:relative;border-radius:3px}
+.c::after{content:"";position:absolute;left:0;right:0;top:57px;height:2px;background:#000}
+.c.sp{background:transparent}.c.a{color:var(--amber)}
+.hdr{display:flex;justify-content:space-between;font:500 13px 'Chivo Mono';color:#9a9d9f;letter-spacing:.1em;margin-bottom:18px}
+.hero{position:absolute;left:28px;right:28px;bottom:28px;height:120px;background:#2c2f32}
+.hero i{position:absolute;right:10px;bottom:6px;font:10px 'Chivo Mono';font-style:normal;color:#999}
+</style></head><body><div class="board">
+<div class="hdr"><span>DEPARTURES · IS460 · GROUP 03</span><span>GATE 03</span></div>
+<div class="row"><div class="c">C</div><div class="c">L</div><div class="c">E</div><div class="c">A</div><div class="c">R</div><div class="c">E</div><div class="c">D</div><div class="c sp"></div><div class="c">F</div><div class="c">O</div><div class="c">R</div></div>
+<div class="row"><div class="c a">S</div><div class="c a">A</div><div class="c a">T</div><div class="c a">I</div><div class="c a">S</div><div class="c a">F</div><div class="c a">A</div><div class="c a">C</div><div class="c a">T</div><div class="c a">I</div><div class="c a">O</div><div class="c a">N</div></div>
+<div class="hero"><i>HERO SLOT 1160:120 · HIGGSFIELD · GRAIN</i></div></div>
+</body></html>

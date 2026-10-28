@@ -1,0 +1,26 @@
+{
+ "title":"Round 4: photo-led, minimal type",
+ "question":"Your new reference pinned the direction: the photograph carries the design, type stays quiet. Pick a variant; hero stand-ins are flat colour until Higgsfield art arrives.",
+ "options":[
+  {"id":"photo-haze","kind":"grounded","label":"Photo Haze","lineage":"your reference: dusk apron, text floating in open sky",
+   "thesis":"A full-bleed warm-haze photograph with the title set small and still in the empty sky.",
+   "palette":["#b9b4aa","#16171a"],"materials":["full-bleed photograph","hairline meta bar","light grotesk"],
+   "viewport":"Photo edge to edge, 70px title in the sky, a thin top bar of tiny labels, team names bottom left.",
+   "risk":"Text legibility depends on the photo keeping a quiet sky area; Higgsfield must leave that region empty.",
+   "html":"/Applications/MAMP/htdocs/y3s1/ML460/project stuff/Machine_learning_project/impeccable/direction/photo-haze.html"},
+  {"id":"photo-night","kind":"grounded","label":"Photo Night","lineage":"blue-hour apron under floodlights",
+   "thesis":"The same system in the dark: white type low-left over a deep blue photograph.",
+   "palette":["#1a2230","#f1f2f0"],"materials":["full-bleed photograph","hairline meta bar"],
+   "viewport":"Photo edge to edge, 96px white title bottom left, thin top bar.",
+   "risk":"Dark slides wash out on a bright classroom projector.",
+   "html":"/Applications/MAMP/htdocs/y3s1/ML460/project stuff/Machine_learning_project/impeccable/direction/photo-night.html"},
+  {"id":"photo-panel","kind":"grounded","label":"Photo Panel","lineage":"photograph beside a quiet text panel",
+   "thesis":"Title slides keep a photo; the left panel becomes the template for data slides with figures.",
+   "palette":["#f2f1ee","#141517","#8c8a84"],"materials":["photo","off-white panel","hairline"],
+   "viewport":"520px off-white panel with the title, photo fills the right 60%.",
+   "risk":"Less cinematic than full-bleed, but the safest on a projector and for dense slides.",
+   "html":"/Applications/MAMP/htdocs/y3s1/ML460/project stuff/Machine_learning_project/impeccable/direction/photo-panel.html"}
+ ],
+ "reroll":{"registers":["safer","bolder"]},
+ "steer":true
+}
